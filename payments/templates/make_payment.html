@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container px-6 mx-auto grid">
+    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Make Payment
+    </h2>
+
+
+    <!-- General elements -->
+    <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+
+    </h4>
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <form method="post" id="PaymentForm">
+            {% csrf_token %}
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                    Select Session (<span class="font-bold">Price</span>: {{normal_fee}})
+                </span>
+                <select name="session" required="" id="id_session"
+                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                    {% for session in sessions %}
+                    <option value="{{session.id}}">{{session.name}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+
+            <button id="pay-button" type="submit" class="duration-150 bg-purple-600 border mt-4 border-transparent rounded text-white py-1 px-4 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                <div class="relative inline-flex mr-1" style="display: none;" id="loader">
+                    <div class="w-3 h-3 bg-white rounded-full"></div>
+                    <div class="w-3 h-3 bg-white rounded-full absolute top-0 left-0 animate-ping"></div>
+                    <div class="w-3 h-3 bg-white rounded-full absolute top-0 left-0 animate-pulse"></div>
+                </div>Pay
+                <span id="loader" style="display:none;" class="ml-2">
+                    <i class="fas fa-spinner fa-spin"></i> <!-- Font Awesome spinner icon -->
+                </span>
+            </button>
+            
+        </form>
+    </div>
+    
+
+</div>
+<script src="{% static 'assets/js/script.js' %}"></script>
+<script src="https://js.paystack.co/v2/inline.js"></script>
+<script src="{% static 'assets/js/webinterswitch.js' %}"></script>
+    <script src="{% static 'assets/js/notification.min.js' %}"></script>
+    <script src="{% static 'assets/js/flutterwave.js' %}"></script>
+    <script src="{% static 'assets/js/notification.min.js' %}"></script>
+	<!-- <script src="https://checkout.flutterwave.com/v3.js"></script> -->
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+<script>
+
+
+//declare callback function
+function paymentCallback(response) {
+    console.log(response);
+}
+
+//sample payment request
+
+
+//call webpayCheckout to initiate the payment
+
+let closedFunction = function() {
+        alert('window closed');
+    }
+
+let successFunction = function(transaction_id) {
+        alert('Transaction was successful, Ref: '+transaction_id)
+    }
+
+let failedFunction = function(transaction_id) {
+         alert('Transaction was not successful, Ref: '+transaction_id)
+    }
+
+
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const csrftoken = getCookie('csrftoken');
+
+var email = '{{request.user.email}}'
+var fee = '{{fee}}'
+console.log(email)
+function payment_() {
+    const session = $('#id_session').val() 
+    
+    try{
+        const paystack = new PaystackPop();
+            paystack.newTransaction({
+                key: '{{paystack_key}}',
+                email: email,
+                amount: fee,
+
+            onSuccess: (transaction) => { 
+                // Payment complete! Reference: transaction.reference 
+                console.log(transaction)
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "make_payment" %}',
+                    headers: {'X-CSRFToken': csrftoken}, // Replace with your server endpoint
+                    data: {transaction: transaction, session:session},
+                    success: function(response) {
+                        // Handle success (e.g., display success message)
+                        showNotification('success','Success', 'Payment Succesful')
+                        $('#loader').css('display', 'none')
+
+                    },                        
+                    error: function(xhr, status, error) {
+                        // Handle error (e.g., display error message)
+                        showNotification('error',"An error occur", error)
+                        $('#loader').css('display', 'none')
+                    }
+                });
+            },
+            onCancel: () => {
+                // user closed popup
+            }
+            });
+            // paystack.openIframe();
+        }
+        catch (error) {
+            showNotification('error',"An error occur", error)
+            
+        }
+}
+
+
+
+$(document).ready(function(){
+    $('#PaymentForm').submit(function(event){
+        event.preventDefault(); // Prevent default form submission
+        const session = $('#id_session').val() 
+        $('#loader').css('display', 'inline-flex')
+        $.ajax({
+                type: 'POST',
+                url: '{% url "check_payment" %}',
+                headers: {'X-CSRFToken': csrftoken}, // Replace with your server endpoint
+                data: {session:session},
+                success: function(response) {
+                    // Handle success (e.g., display success message)
+                    payment_()
+                },
+                error: function(xhr, status, error) {
+                    // Handle error (e.g., display error message)
+                    console.log(status)
+                    if (status === 'error') {
+                        showNotification('error',"Warning", 'You have already paid for this session')
+                        $('#loader').css('display', 'none')
+
+                    }
+                    else{
+                        console.log(error)
+                        showNotification('error',"An error occur", error)
+                        $('#loader').css('display', 'none')
+
+                    }
+                }
+            });
+        
+        // var samplePaymentRequest = {
+        //     merchant_code: "MX007",          
+        //     pay_item_id: "101007",
+        //     txn_ref: "sample_txn_ref_123",
+        //     site_redirect_url: "https://google.com/",
+        //     amount: 10000, 
+        //     currency: 566, // ISO 4217 numeric code of the currency used
+        //     onComplete: paymentCallback,
+        //     mode: 'TEST'
+        // };
+        // window.webpayCheckout(samplePaymentRequest);
+        var formData = $(this).serialize(); // Serialize form data
+    });
+    });
+
+
+
+
+</script>
+{% endblock %}

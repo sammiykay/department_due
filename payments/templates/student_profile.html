@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container px-6 mx-auto grid">
+  <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+    <h3 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+      Edit Profile
+    </h3>
+
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label class="block mt-4 text-sm">
+          <span class="text-gray-700 dark:text-gray-400">
+            Matric Number
+          </span>
+          <input type="text" value="{{student.matric_number}}" name="matric_number" disabled
+            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+        </label>
+        <label class="block mt-4 text-sm">
+          <span class="text-gray-700 dark:text-gray-400">
+            Name
+          </span>
+          <input type="text" value="{{student.user.first_name}}" name="name"
+            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+        </label>
+        <label class="block mt-4 text-sm">
+          <span class="text-gray-700 dark:text-gray-400">
+            Email
+          </span>
+          <input type="email" value="{{student.user.email}}" name="email"
+            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+        </label>
+        <label class="block mt-4 text-sm">
+          <span class="text-gray-700 dark:text-gray-400">
+            Faculty
+          </span>
+          <input type="text" value="{{student.faculty}}" name="faculty"
+            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+        </label>
+        <label class="block mt-4 text-sm">
+          <span class="text-gray-700 dark:text-gray-400">
+            Department
+          </span>
+          <input type="text" value="{{student.department}}" name="department"
+            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+        </label>
+        <div class="flex items-center mt-4 space-x-6">
+          <div class="shrink-0">
+              <img id='preview_img' class="h-16 w-16 object-cover rounded-full"
+                  src="{{student.imageURL}}"
+                  alt="Current profile photo" />
+          </div>
+          <label class="block">
+              <span class="sr-only text-purple-300">Choose profile photo</span>
+              <input id="image" type="file" name="image" onchange="loadFile(event)" class="block w-full text-sm text-slate-500 text-purple-500
+          file:mr-4 file:py-2 file:px-4
+          file:rounded-full file:border-0
+          file:text-sm file:font-semibold
+          file:bg-violet-50 file:text-violet-700
+          hover:file:bg-violet-100
+          
+      " 
+       />
+          </label>
+      </div>
+        <button id="pay-button" type="submit"
+          class="duration-150 bg-purple-600 border mt-4 border-transparent rounded text-white py-1 px-4 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+          <div class="relative inline-flex mr-1" style="display: none;" id="loader">
+            <div class="w-3 h-3 bg-white rounded-full"></div>
+            <div class="w-3 h-3 bg-white rounded-full absolute top-0 left-0 animate-ping"></div>
+            <div class="w-3 h-3 bg-white rounded-full absolute top-0 left-0 animate-pulse"></div>
+          </div>Save
+          <span id="loader" style="display:none;" class="ml-2">
+            <i class="fas fa-spinner fa-spin"></i> <!-- Font Awesome spinner icon -->
+          </span>
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!-- AJAX script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+  var loadFile = function (event) {
+
+var input = event.target;
+var file = input.files[0];
+var type = file.type;
+
+var output = document.getElementById('preview_img');
+
+
+output.src = URL.createObjectURL(event.target.files[0]);
+output.onload = function () {
+    URL.revokeObjectURL(output.src) // free memory
+}
+};
+  $(document).ready(function () {
+    $('#search-input').on('keyup', function () {
+      var query = $(this).val();
+      $.ajax({
+        url: '{% url "search_payments" %}',  // URL for the search endpoint
+        type: 'GET',
+        data: { 'q': query },
+        success: function (data) {
+          $('#payment-table-body').html(data);
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

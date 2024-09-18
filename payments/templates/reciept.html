@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{payment.student.matric_number}} Receipt for {{payment.session}}</title>
+    <style>
+        .watermark {
+            position: relative;
+        }
+        .watermark::before {
+            content: "";
+            background: url('{{ watermark_image_url }}') no-repeat center;
+            background-size: 200px 200px;
+            opacity: 0.2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+        .header {
+            margin-top: 24px;
+            text-align: center;
+        }
+        .logo {
+            width: 64px;
+            display: block;
+            margin: 0 auto;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .text-xl {
+            font-size: 1.25rem;
+        }
+        .font-semibold {
+            font-weight: 600;
+        }
+        .underline {
+            text-decoration: underline;
+        }
+        .mt-5 {
+            margin-top: 1.25rem;
+        }
+        .mt-4 {
+            margin-top: 1rem;
+        }
+        .personal-info, .payment-info {
+            margin-top: 1rem;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .table th, .table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body class="watermark">
+    <div class="container">
+        <!-- Header section with logos -->
+        <div class="header">
+            <img src="{{ aaua_logo_url }}" class="logo" alt="University Logo">
+            <h2 class="bold text-xl">ADEKUNLE AJASIN UNIVERSITY, AKUNGBA AKOKO</h2>
+            <p class="font-semibold">{{ payment.session }} DEPARTMENT DUE OFFICIAL RECEIPT</p>
+            <img src="{{ qr_code_url }}" class="logo" alt="QR Code">
+        </div>
+    </div>
+
+    <hr class="mt-5 font-bold">
+
+    <!-- Personal Information section -->
+    <div class="container">
+        <p style="text-align: center; font-size: 16px; text-decoration: underline; font-weight: 800;">{{payment.student.user.first_name}}</p>
+        <div class="personal-info">
+            <p class="underline font-semibold">Personal Information</p>
+            <div>
+                <p><span class="font-bold">Matric Number</span>: {{ payment.student.matric_number }}</p>
+                <p><span class="font-bold">Faculty</span>: {{ payment.student.faculty }}</p>
+                <p><span class="font-bold">Academic Session</span>: {{ payment.session }}</p>
+                <p><span class="font-bold">Course of Study</span>: {{ payment.student.department }}</p>
+                <p><span class="font-bold">Payment For</span>: Department Due</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Information section -->
+    <div class="container">
+        <div class="payment-info">
+            <p class="underline font-semibold">Payment Information</p>
+            <div>
+                <p><span class="font-bold">Transaction Date</span>: {{ payment.date_paid }}</p>
+                <p><span class="font-bold">Transaction Currency</span>: NGN Naira</p>
+                <p><span class="font-bold">Transaction ID</span>: {{ payment.transaction_id }}</p>
+            </div>
+        </div>
+
+        <!-- Table for fee items -->
+        <div class="table-container">
+            <table class="table">
+                <tr>
+                    <th>Item No</th>
+                    <th>Fee Item</th>
+                    <th>Amount</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Department Due</td>
+                    <td>N{{ payment.amount }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+.nav-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav-link.active {
+    color: green; /* Change this to the desired active color */
+    font-weight: bold; /* Optionally make the active link bold */
+}
