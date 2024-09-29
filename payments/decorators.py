@@ -16,3 +16,7 @@ def student_required(function):
         else:
             return redirect('login')
     return wrap
+
+# Check if the user is an admin
+def admin_required(user):
+    return user.is_staff  # Only allow users with staff/admin privileges

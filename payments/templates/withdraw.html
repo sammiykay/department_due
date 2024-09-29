@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<main class="h-full pb-16 overflow-y-auto">
+    <div class="container px-6 mx-auto grid">
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Withdraw Cash
+        </h2>
+        <form method="post">
+
+            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <p class="my-3 text-sm font-semibold text-gray-700 dark:text-gray-200">Balance: &#8358;<span id="getbalance">{{balance}}</span></p>
+                <label class="block text-sm">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-700 dark:text-gray-400 mb-2">
+                            Bank Name
+                        </span>
+                        <div class="relative inline-flex mt-3" style="display: none;" id="bank_loader">
+                            <div class="w-3 h-3 bg-white rounded-full bg-purple-700"></div>
+                            <div class="w-3 h-3 bg-white rounded-full bg-purple-700 absolute top-0 left-0 animate-ping">
+                            </div>
+                            <div
+                                class="w-3 h-3 bg-white rounded-full bg-purple-700 absolute top-0 left-0 animate-pulse">
+                            </div>
+                        </div>
+                    </div>
+                    <select name="bank_code" id="bank_code"
+                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="">Select a bank</option>
+                    </select>
+                </label>
+                <label class="block mt-4 text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Account Number</span>
+                    <input type="number" id="account_number" name="acct_no"
+                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        placeholder="Enter Account Number" />
+                    <div class="relative inline-flex mt-3" style="display: none;" id="loader">
+                        <div class="w-3 h-3 bg-white rounded-full bg-purple-700"></div>
+                        <div class="w-3 h-3 bg-white rounded-full bg-purple-700 absolute top-0 left-0 animate-ping">
+                        </div>
+                        <div class="w-3 h-3 bg-white rounded-full bg-purple-700 absolute top-0 left-0 animate-pulse">
+                        </div>
+                    </div>
+                    <p id="account_name_display" class="text-green-500 mt-2"></p>
+                </label>
+                <label class="block mt-4 text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Amount</span>
+                    <input type="number" name="amount" id="amount_withdraw"
+                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        placeholder="Enter amount to withdraw" />
+                </label>
+                <button id="withdraw_button"
+                    class="px-3 mt-5 text-sm py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    <div class="relative inline-flex mr-2" style="display: none;" id="withdraw_loader">
+                        <div class="w-3 h-3 bg-white rounded-full bg-purple-700"></div>
+                        <div class="w-3 h-3 bg-white rounded-full bg-purple-700 absolute top-0 left-0 animate-ping">
+                        </div>
+                        <div
+                            class="w-3 h-3 bg-white rounded-full bg-purple-700 absolute top-0 left-0 animate-pulse">
+                        </div>
+                    </div>Withdraw
+                </button>
+
+
+
+            </div>
+        </form>
+    </div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="{% static 'assets/js/notification.min.js' %}"></script>
+<script src="{% static 'assets/js/script.js' %}"></script>
+<script src="https://js.paystack.co/v2/inline.js"></script>
+<script src="{% static 'assets/js/webinterswitch.js' %}"></script>
+<script src="{% static 'assets/js/notification.min.js' %}"></script>
+<script src="{% static 'assets/js/flutterwave.js' %}"></script>
+<script src="{% static 'assets/js/notification.min.js' %}"></script>
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+<!-- <script src="https://checkout.flutterwave.com/v3.js"></script> -->
+<script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+<!-- <script>
+    $(document).ready(function () {
+    // Function to get banks and populate the select field
+    function fetchBanks() {
+        $('#bank_loader').show();
+        $.ajax({
+            url: '{% url "get_banks" %}',  // Django endpoint to fetch bank data
+            type: 'GET',
+            success: function (response) {
+                if (response.status === 'success') {
+                    var bankSelect = $('#bank_code');
+                    bankSelect.empty();  // Clear any existing options
+                    bankSelect.append('<option value="">Select a bank</option>');
+                    $('#bank_loader').hide();
+                    // Loop through the bank data and create options
+                    $.each(response.data, function (index, bank) {
+                        bankSelect.append('<option value="' + bank.code + '">' + bank.name + '</option>');
+                    });
+                } else {
+                    alert('Error fetching banks: ' + response.message);
+                }
+            },
+            error: function (error) {
+                console.log('Error:', error);
+                alert('Failed to fetch banks');
+            }
+        });
+    }
+
+    // Call the function to fetch banks when the page loads
+    fetchBanks();
+
+    // Function to verify the account number
+    function verifyAccount(accountNumber, bankCode) {
+        var publicKey = "{{public_key}}";  // Replace with your actual public key
+
+        // Show the loader before starting verification
+        $('#loader').show();
+        $('#account_name_display').text('');  // Clear previous account name
+
+        $.ajax({
+            url: 'https://api.ravepay.co/flwv3-pug/getpaidx/api/resolve_account',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                recipientaccount: accountNumber,
+                destbankcode: bankCode,
+                PBFPubKey: publicKey
+            }),
+            success: function (response) {
+                // Hide the loader after verification
+                $('#loader').hide();
+
+                if (response.status === 'success') {
+                    var accountName = response.data.data.accountname;
+                    $('#account_name_display').text('Account Name: ' + accountName);  // Display the account name
+                } else {
+                    $('#account_name_display').text('Account verification failed. Please try again.');
+                }
+            },
+            error: function (error) {
+                // Hide the loader after error
+                $('#loader').hide();
+                console.log('Error:', error);
+                $('#account_name_display').text('Failed to verify account number.');
+            }
+        });
+    }
+
+    // Event listener for the account number field with input restriction
+    $('#account_number').on('input', function () {
+        var accountNumber = $(this).val();
+        
+        // Prevent entering more than 10 digits
+        if (accountNumber.length > 10) {
+            $(this).val(accountNumber.slice(0, 10));  // Truncate input to 10 digits
+        }
+
+        var bankCode = $('#bank_code').val();
+
+        // Verify the account when exactly 10 digits are entered
+        if (accountNumber.length === 10 && bankCode) {
+            verifyAccount(accountNumber, bankCode);
+        }
+    });
+});
+
+  </script> -->
+
+<script>
+    $(document).ready(function () {
+        // Function to fetch banks and populate the select field
+        function fetchBanks() {
+            $('#bank_loader').show();
+            $.ajax({
+                url: '{% url "get_banks" %}',  // Django endpoint to fetch bank data
+                type: 'GET',
+                success: function (response) {
+                    if (response.status === 'success') {
+                        var bankSelect = $('#bank_code');
+                        bankSelect.empty();  // Clear any existing options
+                        bankSelect.append('<option value="">Select a bank</option>');
+                        $('#bank_loader').hide();
+
+                        // Loop through the bank data and create options
+                        $.each(response.data, function (index, bank) {
+                            bankSelect.append('<option value="' + bank.code + '">' + bank.name + '</option>');
+                        });
+                    } else {
+                        alert('Error fetching banks: ' + response.message);
+                    }
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                    alert('Failed to fetch banks');
+                }
+            });
+        }
+
+        // Call the function to fetch banks when the page loads
+        fetchBanks();
+
+        // Function to verify the account number
+        function verifyAccount(accountNumber, bankCode) {
+            var publicKey = "{{public_key}}";  // Replace with your actual public key
+
+            $('#loader').show();
+            $('#account_name_display').text('');
+
+            $.ajax({
+                url: 'https://api.ravepay.co/flwv3-pug/getpaidx/api/resolve_account',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    recipientaccount: accountNumber,
+                    destbankcode: bankCode,
+                    PBFPubKey: publicKey
+                }),
+                success: function (response) {
+                    $('#loader').hide();
+
+                    if (response.status === 'success') {
+                        var accountName = response.data.data.accountname;
+                        $('#account_name_display').text('Account Name: ' + accountName);
+                    } else {
+                        $('#account_name_display').text('Account verification failed. Please try again.');
+                    }
+                },
+                error: function (error) {
+                    $('#loader').hide();
+                    console.log('Error:', error);
+                    $('#account_name_display').text('Failed to verify account number.');
+                }
+            });
+        }
+
+        // Trigger account verification
+        $('#account_number').on('input', function () {
+            var accountNumber = $(this).val();
+
+            if (accountNumber.length > 10) {
+                $(this).val(accountNumber.slice(0, 10));  // Limit to 10 digits
+            }
+
+            var bankCode = $('#bank_code').val();
+            if (accountNumber.length === 10 && bankCode) {
+                verifyAccount(accountNumber, bankCode);
+            }
+        });
+
+        // Handle form submission
+        $('#withdraw_button').click(function (e) {
+            e.preventDefault();
+            
+            $('#withdraw_loader').show();
+            var bankCode = $('#bank_code').val();
+            var accountNumber = $('#account_number').val();
+            var amount = $('#amount_withdraw').val();
+            var accountName = $('#account_name_display').text().replace('Account Name: ', '');  // Extract account name
+            var balance = "{{ balance }}";  // Use your Django variable for balance
+
+            // Validate fields
+            if (!bankCode || !accountNumber || !amount || !accountName) {
+                alert('Please fill in all fields.');
+                $('#withdraw_loader').hide();
+
+                return;
+            }
+
+            // Send the data via AJAX to the server
+            $.ajax({
+                url: '{% url "withdraw_cash" %}',  // Replace with your actual Django endpoint
+                type: 'POST',
+                data: {
+                    'bank_code': bankCode,
+                    'account_number': accountNumber,
+                    'amount_withdraw': amount,
+                    'account_name': accountName,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'  // Ensure CSRF token is included
+                },
+                success: function (response) {
+                    if (response.status === 'success') {
+                        console.log(response)
+                        showNotification('success','Success', response.message)
+                        $('#getbalance').text(response.balance)
+                        $('#withdraw_loader').hide();
+                        // Optionally, reload the page or reset the form
+                        // location.reload();
+                    } else {
+                        showNotification('error','Error', response.responseJSON.message)
+                        $('#withdraw_loader').hide();
+                    }
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                    showNotification('error','Error', error.responseJSON.message)
+                    $('#withdraw_loader').hide();
+                }
+            });
+        });
+    });
+
+</script>
+{% endblock %}

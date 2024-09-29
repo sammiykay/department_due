@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-e)$l%do!^i#z(hm%v(kntwutrs-#+(50rmfmybc7@zrk_1#gb5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','658c-197-210-28-181.ngrok-free.app']
-CSRF_TRUSTED_ORIGINS = ['https://658c-197-210-28-181.ngrok-free.app']
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://5ef4-105-113-98-117.ngrok-free.app']
 
 # Application definition
 
@@ -129,3 +129,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kayodeola47@gmail.com'
+EMAIL_HOST_PASSWORD = 'dgjnuziykfxcpnhc'
+
+
+FLUTTERWAVE_SECRET_KEY = 'FLWSECK-ea27d70b7a12ba1958993aa294bfc426-1923042509dvt-X'
+FLUTTERWAVE_PUBLIC_KEY = "FLWPUBK-145aa90f17132d6b3a8730c023c53061-X"

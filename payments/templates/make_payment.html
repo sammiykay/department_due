@@ -48,7 +48,8 @@
     <script src="{% static 'assets/js/notification.min.js' %}"></script>
     <script src="{% static 'assets/js/flutterwave.js' %}"></script>
     <script src="{% static 'assets/js/notification.min.js' %}"></script>
-	<!-- <script src="https://checkout.flutterwave.com/v3.js"></script> -->
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+<!-- <script src="https://checkout.flutterwave.com/v3.js"></script> -->
     <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
 <script>
 
@@ -109,7 +110,6 @@ function payment_() {
 
             onSuccess: (transaction) => { 
                 // Payment complete! Reference: transaction.reference 
-                console.log(transaction)
                 $.ajax({
                     type: 'POST',
                     url: '{% url "make_payment" %}',
@@ -140,6 +140,70 @@ function payment_() {
         }
 }
 
+function generateTxRef() {
+    // Get the current timestamp
+    const timestamp = Date.now();
+
+    // Generate a random string of 8 characters
+    const randomString = Math.random().toString(36).substring(2, 10).toUpperCase();
+
+    // Combine timestamp and random string to form a unique tx_ref
+    const txRef = `TX-${timestamp}-${randomString}`;
+
+    return txRef;
+}
+
+
+
+function makePayment() {
+const session = $('#id_session').val() 
+
+  FlutterwaveCheckout({
+	public_key: "{{public_key}}",
+	tx_ref: generateTxRef(),
+	amount: "{{normal_fee}}",
+	currency: "NGN",
+	payment_options: "card, banktransfer, ussd",
+	meta: {
+	  source: "docs-inline-test",
+	  consumer_mac: "92a3-912ba-1192a",
+	},
+	customer: {
+	  email: "{{request.user.email}}",
+	  phone_number: "08100000000",
+	  name: "{{request.user.first_name}} {{request.user.last_name}}",
+	},
+	customizations: {
+	  title: "Departmental Due Payment ",
+	  description: "",
+	  logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
+	},
+	callback: function (data){
+        $.ajax({
+                type: 'POST',
+                url: '{% url "make_payment" %}',
+                headers: {'X-CSRFToken': csrftoken}, // Replace with your server endpoint
+                data: {transaction: data, session:session},
+                success: function(response) {
+                    // Handle success (e.g., display success message)
+                    showNotification('success','Success', 'Payment Succesful')
+                    $('#loader').css('display', 'none')
+                    window.location.href = "{% url 'view_receipts' %}"
+                },                        
+                error: function(xhr, status, error) {
+                    // Handle error (e.g., display error message)
+                    showNotification('error',"An error occur", error)
+                    $('#loader').css('display', 'none')
+                }
+            });
+	    
+	},
+	onclose: function() {
+	  alert("Payment cancelled!");
+	}
+  });}
+
+
 
 
 $(document).ready(function(){
@@ -154,7 +218,8 @@ $(document).ready(function(){
                 data: {session:session},
                 success: function(response) {
                     // Handle success (e.g., display success message)
-                    payment_()
+                    // payment_()
+                    makePayment()
                 },
                 error: function(xhr, status, error) {
                     // Handle error (e.g., display error message)

@@ -10,7 +10,14 @@
     <input type="text" id="search-input"
       class="mb-4 w-full p-2 border rounded bg-transparent outline-none border-1 border-gray-600 text-sm dark:text-white"
       placeholder="Search by Matric Number...">
-
+    <div class="flex justify-between items-center mb-4">
+      <div></div>
+      <div>
+        <button
+          class="px-3 py-2 rounded-md rounded-l-md focus:outline-none focus:shadow-outline-purple bg-purple-600 text-white text-sm"
+          id="generateReportBtn">Generate Report</button>
+      </div>
+    </div>
     <div class="w-full overflow-x-auto">
       <table class="w-full whitespace-no-wrap">
         <thead>
@@ -30,11 +37,12 @@
           {% for history in page_obj %}
           <tr class="text-gray-700 dark:text-gray-400">
             <td class="px-4 py-3">
-              <a href="{{history.receipt.url}}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-h h-6 cursor-pointer hover:text-gray-600 transition.5s">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
-              </svg>
+              <a href="{{history.receipt.url}}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor"
+                  class="w-h h-6 cursor-pointer hover:text-gray-600 transition.5s">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
+                </svg>
               </a>
             </td>
             <td class="px-4 py-3 text-sm">
@@ -63,71 +71,144 @@
         </tbody>
       </table>
     </div>
-    <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
+    <div
+      class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
       <span class="flex items-center col-span-3">
-          Showing {{ start_index }}-{{ end_index }} of {{ total_payments }}
+        Showing {{ start_index }}-{{ end_index }} of {{ total_payments }}
       </span>
       <span class="col-span-2"></span>
       <!-- Pagination Controls -->
       <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-          <nav aria-label="Table navigation">
-              <ul class="inline-flex items-center">
-                  <!-- Previous Page Link -->
-                  {% if page_obj.has_previous %}
-                      <li>
-                          <a href="?page={{ page_obj.previous_page_number }}" class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple" aria-label="Previous">
-                              <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                  <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                              </svg>
-                          </a>
-                      </li>
-                  {% endif %}
+        <nav aria-label="Table navigation">
+          <ul class="inline-flex items-center">
+            <!-- Previous Page Link -->
+            {% if page_obj.has_previous %}
+            <li>
+              <a href="?page={{ page_obj.previous_page_number }}"
+                class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
+                aria-label="Previous">
+                <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                    clip-rule="evenodd" fill-rule="evenodd"></path>
+                </svg>
+              </a>
+            </li>
+            {% endif %}
 
-                  <!-- Page Numbers -->
-                  {% for num in page_obj.paginator.page_range %}
-                      {% if page_obj.number == num %}
-                          <li>
-                              <span class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple">{{ num }}</span>
-                          </li>
-                      {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
-                          <li>
-                              <a href="?page={{ num }}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">{{ num }}</a>
-                          </li>
-                      {% endif %}
-                  {% endfor %}
+            <!-- Page Numbers -->
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <li>
+              <span
+                class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple">{{num }}</span>
+            </li>
+            {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %} <li>
+              <a href="?page={{ num }}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">{{ num }}</a>
+              </li>
+              {% endif %}
+              {% endfor %}
 
-                  <!-- Next Page Link -->
-                  {% if page_obj.has_next %}
-                      <li>
-                          <a href="?page={{ page_obj.next_page_number }}" class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple" aria-label="Next">
-                              <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
-                                  <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                              </svg>
-                          </a>
-                      </li>
-                  {% endif %}
-              </ul>
-          </nav>
+              <!-- Next Page Link -->
+              {% if page_obj.has_next %}
+              <li>
+                <a href="?page={{ page_obj.next_page_number }}"
+                  class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
+                  aria-label="Next">
+                  <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
+                    <path
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clip-rule="evenodd" fill-rule="evenodd"></path>
+                  </svg>
+                </a>
+              </li>
+              {% endif %}
+          </ul>
+        </nav>
       </span>
-  </div>
+    </div>
   </div>
 </div>
-  
-    <!-- AJAX script -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#search-input').on('keyup', function () {
-          var query = $(this).val();
-          $.ajax({
-            url: '{% url "search_payments" %}',  // URL for the search endpoint
-            type: 'GET',
-            data: { 'q': query },
-            success: function (data) {
-              $('#payment-table-body').html(data);
-            }
-          });
-        });
+
+<!-- AJAX script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#search-input').on('keyup', function () {
+      var query = $(this).val();
+      $.ajax({
+        url: '{% url "search_payments" %}',  // URL for the search endpoint
+        type: 'GET',
+        data: { 'q': query },
+        success: function (data) {
+          $('#payment-table-body').html(data);
+        }
       });
-    </script>
-    {% endblock %}
+    });
+  });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#generateReportBtn').click(function (e) {
+      e.preventDefault();
+
+      // Disable the button to prevent multiple clicks
+      $(this).attr('disabled', 'disabled');
+
+      // Generate the current timestamp
+      var currentDate = new Date();
+      var day = ("0" + currentDate.getDate()).slice(-2);
+      var month = ("0" + (currentDate.getMonth() + 1)).slice(-2);
+      var year = currentDate.getFullYear();
+      var hours = ("0" + currentDate.getHours()).slice(-2);
+      var minutes = ("0" + currentDate.getMinutes()).slice(-2);
+      var seconds = ("0" + currentDate.getSeconds()).slice(-2);
+
+      var timestamp = `${year}${month}${day}_${hours}${minutes}${seconds}`;
+
+      // Set the default filename with a timestamp
+      var filename = `payment_report_${timestamp}.csv`;
+
+      // Send the AJAX request to the server to generate the report
+      $.ajax({
+        url: '/generate-report/',  // Django URL pattern for report generation
+        method: 'GET',
+        xhrFields: {
+          responseType: 'blob'  // Expect a binary file (for CSV report)
+        },
+        success: function (data, status, xhr) {
+          // Get the filename from the content disposition header if available
+          var disposition = xhr.getResponseHeader('Content-Disposition');
+          if (disposition && disposition.indexOf('attachment') !== -1) {
+            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+            var matches = filenameRegex.exec(disposition);
+            if (matches != null && matches[1]) {
+              filename = matches[1].replace(/['"]/g, '');
+            }
+          }
+
+          // Create a blob URL for the file and trigger the download
+          var blob = new Blob([data], { type: 'text/csv' });
+          var link = document.createElement('a');
+          link.href = window.URL.createObjectURL(blob);
+          link.download = filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        },
+        error: function (xhr, status, error) {
+          alert('An error occurred while generating the report: ' + error);
+        },
+        complete: function () {
+          // Re-enable the button after the process is done
+          $('#generateReportBtn').removeAttr('disabled');
+        }
+      });
+    });
+  });
+</script>
+
+{% endblock %}

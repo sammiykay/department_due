@@ -1,0 +1,35 @@
+{% for history in payments %}
+<tr class="text-gray-700 dark:text-gray-400">
+    <td class="px-4 py-3 text-sm">
+        {{history.id}}
+    </td>
+    <td class="px-4 py-3 text-sm">
+        {{history.account_name}}
+    </td>
+    <td class="px-4 py-3 text-sm">
+        {{history.account_number}}
+    </td>
+    <td class="px-4 py-3 text-sm">
+        {{history.bank_name}}
+      </td>
+    <td class="px-4 py-3 text-sm">
+        &#8358;{{history.amount_withdraw}}
+    </td>
+    <td class="px-4 py-3 text-sm">
+        &#8358;{{history.price}}
+    </td>
+    <td class="px-4 py-3 text-xs">
+        <span
+            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+            Successful
+        </span>
+    </td>
+    <td class="px-4 py-3 text-sm">
+        {{history.created_on}}
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="8" class="text-center py-3 text-white">No Withdrawal found.</td>
+</tr>
+{% endfor %}

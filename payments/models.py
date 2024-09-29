@@ -38,3 +38,13 @@ class Payment(models.Model):
 
 class DepartmentFee(models.Model):
     price = models.IntegerField(default=1500)
+
+
+class Balance(models.Model):
+    created_on = models.DateTimeField(auto_now_add=True)
+    amount_withdraw = models.IntegerField(default=0)
+    bank_code = models.CharField(max_length=202, default='')
+    account_number = models.CharField(max_length=202, default='')
+    bank_name = models.CharField(max_length=200, default='')
+    price = models.IntegerField(default=0)
+    account_name = models.CharField(max_length=444, default='')

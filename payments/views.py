@@ -6,6 +6,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from .models import *
 from .forms import *
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 import uuid
 from django.core.files.base import ContentFile
 from io import BytesIO
@@ -24,6 +28,24 @@ from xhtml2pdf import pisa
 import io
 from django.conf import settings
 from django.core.files import File
+from django.conf import settings
+import requests
+import time
+
+
+def get_banks(request):
+    headers = {
+        'Authorization': f'Bearer {settings.FLUTTERWAVE_SECRET_KEY}'  
+    }
+
+    # Call Flutterwave API to fetch banks
+    response = requests.get('https://api.flutterwave.com/v3/banks/NG', headers=headers)
+
+    # Check if the response from Flutterwave is OK
+    if response.status_code == 200:
+        return JsonResponse(response.json(), safe=False)
+    else:
+        return JsonResponse({'error': 'Failed to fetch banks'}, status=response.status_code)
 
 
 
@@ -124,6 +146,7 @@ def make_payment(request):
     student = Student.objects.get(user=request.user)
     sessions = Session.objects.all()
     fee = DepartmentFee.objects.first()
+    print(fee.price)
     print(request.POST)
     if request.method == 'POST':
         form = PaymentForm(request.POST)
@@ -131,13 +154,16 @@ def make_payment(request):
         session=Session.objects.get(id = session)
         payment = Payment.objects.create(amount=fee.price, session=session,transaction_id=str(uuid.uuid4()), student=student)
         generate_pdf_receipt(payment)
+        previous_balance = Balance.objects.last().price
+        balance = int(previous_balance) + int(fee.price)
+        Balance.objects.create(price = balance)
         return JsonResponse({'status': 'success', 'payment_id': payment.id, 'message': 'Payment successful!'})
         # else:
         #     return JsonResponse({'status': 'error', 'message': 'Invalid form data.'})
     
     form = PaymentForm()
-    paystack_key = 'pk_test_108c33e6b3e38e5c4d919275f4b25331e484691e'
-    return render(request, 'make_payment.html', {'form': form, 'sessions': sessions, 'paystack_key': paystack_key, 'normal_fee':fee.price, 'fee':fee.price * 100})
+    public_key = settings.FLUTTERWAVE_PUBLIC_KEY
+    return render(request, 'make_payment.html', {'form': form, 'sessions': sessions, 'public_key': public_key, 'normal_fee':fee.price, 'fee':fee.price * 100})
 
 
 
@@ -308,6 +334,18 @@ def search_payments(request):
     
     return JsonResponse(html, safe=False)
 
+def search_withdrawal(request):
+    query = request.GET.get('q', '')
+    filled_balances = Balance.objects.filter(account_number__isnull=False).exclude(account_number='').filter(bank_code__isnull=False).exclude(bank_code='')
+
+    payments = filled_balances.filter(account_number__icontains=query) | filled_balances.filter(account_name__icontains=query) | filled_balances.filter(bank_name__icontains=query)
+
+    # Render the payments into HTML and send it back as the response
+    html = render_to_string('withdrawal_table_rows.html', {'payments': payments})
+    
+    return JsonResponse(html, safe=False)
+
+
 @login_required
 @user_passes_test(lambda u: u.is_staff)
 def all_payments(request):
@@ -326,6 +364,27 @@ def all_payments(request):
     }
 
     return render(request, 'all_payments.html', context=context)
+
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def withdrawals(request):
+    filled_balances = Balance.objects.filter(account_number__isnull=False).exclude(account_number='').filter(bank_code__isnull=False).exclude(bank_code='')
+
+    payments = filled_balances.order_by('-created_on')  # Order payments by most recent first
+    paginator = Paginator(payments, 10) 
+
+    # Get the current page number from the request
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'total_payments': paginator.count,
+        'start_index': page_obj.start_index(),
+        'end_index': page_obj.end_index(),
+    }
+
+    return render(request, 'withdrawals.html', context=context)
 
 
 def view_my_receipts(request):
@@ -352,7 +411,6 @@ def department_fee(request):
     departmentfee = DepartmentFee.objects.first()  # Retrieve all students
     if request.method == 'POST':
         fee = request.POST.get('fee')
-        print(fee)
         departmentfee.price = int(fee)
         departmentfee.save()
     context = {
@@ -410,7 +468,7 @@ def signup(request):
 
 
 # Login View
-def login(request):
+def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -429,3 +487,153 @@ def login(request):
             return JsonResponse({'status': 'Warning', 'message': f'Invalid matric number or password'}, status = 400)
     return render(request, 'login.html')
 
+
+
+@user_passes_test(admin_required)
+def generate_withdrawal_report(request):
+    # Fetch all payments to generate the report
+    filled_balances = Balance.objects.filter(account_number__isnull=False).exclude(account_number='').filter(bank_code__isnull=False).exclude(bank_code='')
+
+    
+    # Example: Creating a basic CSV report
+    report_data = "Account Name, Account Number, Bank Name, Amount, Balance, Date\n"
+    for balance in filled_balances:
+        report_data += f"{balance.account_name}, {balance.account_number}, {balance.bank_name}, {balance.amount_withdraw}, {balance.price}, {balance.created_on}\n"
+
+    # Return the CSV report as an HTTP response
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="withdrawal_report-{time.time()}.csv"'
+    response.write(report_data)
+
+    return response
+
+
+@user_passes_test(admin_required)
+def generate_report(request):
+    # Fetch all payments to generate the report
+    payments = Payment.objects.all()
+    
+    # Example: Creating a basic CSV report
+    report_data = "Student, Session, Amount, Date Paid, Transaction ID\n"
+    for payment in payments:
+        report_data += f"{payment.student}, {payment.session}, {payment.amount}, {payment.date_paid}, {payment.transaction_id}\n"
+
+    # Return the CSV report as an HTTP response
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="payment_report-{time.time()}.csv"'
+    response.write(report_data)
+
+    return response
+
+
+def send_withdrawal_email(request, account_name, amount):
+    subject = 'Withdraw Successful'
+    
+    # Render the HTML email template
+    html_message = render_to_string('withdrawal_email.html', {
+        'account_name': account_name,
+        'amount': amount,
+        'current_year': datetime.now().year
+    })
+    
+    # Generate plain text version of the email
+    plain_message = strip_tags(html_message)
+    
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [request.user.email]
+
+    # Create the email using EmailMultiAlternatives
+    email = EmailMultiAlternatives(subject, plain_message, email_from, recipient_list)
+    
+    # Attach the HTML version of the email
+    email.attach_alternative(html_message, "text/html")
+    
+    # Send the email
+    email.send()
+
+
+def get_bank_by_code(bank_code):
+    headers = {
+        'Authorization': f'Bearer {settings.FLUTTERWAVE_SECRET_KEY}'
+    }
+
+    try:
+        # Make the GET request to fetch all banks
+        response = requests.get('https://api.flutterwave.com/v3/banks/NG', headers=headers)
+        response.raise_for_status()  # Raise an error for bad status codes (4xx or 5xx)
+
+        # Get the response data
+        data = response.json()
+
+        if data['status'] == 'success':
+            # Iterate through the bank list to find the bank with the matching code
+            for bank in data['data']:
+                if bank['code'] == bank_code:
+                    return bank  # Return the matching bank
+
+            return None  # Return None if no bank with the given code is found
+        else:
+            print(f"Error: {data['message']}")
+            return None
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching bank details: {e}")
+        return None
+
+
+
+
+
+@user_passes_test(admin_required)
+def withdraw_cash(request):
+    try:
+        balance = Balance.objects.last().price
+    except:
+        balance = 0
+    public_key = settings.FLUTTERWAVE_PUBLIC_KEY   
+    if request.method == 'POST':
+        balance = Balance.objects.last().price
+        bank_code = request.POST.get('bank_code')
+        account_name = request.POST.get('account_name')
+        account_number =  request.POST.get('account_number')
+        amount = request.POST.get('amount_withdraw')
+        narration = 'Withdrawal from Departmental due'
+
+        if balance < int(amount):
+            return JsonResponse({'status': 'error', 'message': 'Insufficient Fund'}, status=400)
+             
+
+
+        headers = {
+            'Authorization': f'Bearer {settings.FLUTTERWAVE_SECRET_KEY}',
+            'Content-Type': 'application/json'
+        }
+
+        payload = {
+            "account_bank": bank_code,
+            "account_number": account_number,
+            "amount": amount,
+            "currency": "NGN",
+            "narration": narration,
+            # "debit_subaccount":'PSAC9F26AAABC6095517',
+            # "callback_url": "https://www.example.com/callback"
+        }
+        print(payload)
+        response = requests.post('https://api.flutterwave.com/v3/transfers', headers=headers, json=payload)
+
+        if response.status_code == 200:
+            balance = Balance.objects.last().price
+            Balance.objects.create(amount_withdraw=amount, bank_name =get_bank_by_code(bank_code)['name'], bank_code = bank_code, price= balance - int(amount) , account_name=account_name, account_number=account_number)
+            send_withdrawal_email(request, account_name, amount)
+            balance = Balance.objects.last().price
+
+            return JsonResponse({'status': 'success', 'message': 'Withdrawal Successful', 'balance': f'{balance}'}, status=200)
+        else:
+            print(response.json())
+            return JsonResponse({'status': 'error', 'message': f"{response.json()['message']}"}, status=400)
+
+    context = {
+        'public_key':public_key,
+        'balance':balance,
+    }
+    return render(request, 'withdraw.html', context)
