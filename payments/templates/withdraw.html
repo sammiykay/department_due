@@ -265,7 +265,8 @@
         // Handle form submission
         $('#withdraw_button').click(function (e) {
             e.preventDefault();
-            
+            $(this).attr('disabled', 'disabled');
+            $(this).css('opacity', '0.2')
             $('#withdraw_loader').show();
             var bankCode = $('#bank_code').val();
             var accountNumber = $('#account_number').val();
@@ -298,17 +299,23 @@
                         showNotification('success','Success', response.message)
                         $('#getbalance').text(response.balance)
                         $('#withdraw_loader').hide();
+                        $('#withdraw_button').css('opacity', '1')
+                        $('#withdraw_button').removeAttr('disabled')
                         // Optionally, reload the page or reset the form
                         // location.reload();
                     } else {
                         showNotification('error','Error', response.responseJSON.message)
                         $('#withdraw_loader').hide();
+                        $('#withdraw_button').css('opacity', '1')
+                        $('#withdraw_button').removeAttr('disabled')
                     }
                 },
                 error: function (error) {
                     console.log('Error:', error);
                     showNotification('error','Error', error.responseJSON.message)
                     $('#withdraw_loader').hide();
+                    $('#withdraw_button').css('opacity', '1')
+                    $('#withdraw_button').removeAttr('disabled')
                 }
             });
         });

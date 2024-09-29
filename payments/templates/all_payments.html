@@ -15,7 +15,14 @@
       <div>
         <button
           class="px-3 py-2 rounded-md rounded-l-md focus:outline-none focus:shadow-outline-purple bg-purple-600 text-white text-sm"
-          id="generateReportBtn">Generate Report</button>
+          id="generateReportBtn">Generate Report <div class="relative inline-flex ml-2" style="display: none;" id="loader">
+            <div class="w-3 h-3 bg-white rounded-full bg-purple-700"></div>
+            <div class="w-3 h-3 bg-white rounded-full bg-purple-700 absolute top-0 left-0 animate-ping">
+            </div>
+            <div
+                class="w-3 h-3 bg-white rounded-full bg-purple-700 absolute top-0 left-0 animate-pulse">
+            </div>
+        </div></button>
       </div>
     </div>
     <div class="w-full overflow-x-auto">
@@ -153,6 +160,7 @@
 <script type="text/javascript">
   $(document).ready(function () {
     $('#generateReportBtn').click(function (e) {
+      $('#loader').show()
       e.preventDefault();
 
       // Disable the button to prevent multiple clicks
@@ -189,6 +197,7 @@
               filename = matches[1].replace(/['"]/g, '');
             }
           }
+          $('#loader').hide()
 
           // Create a blob URL for the file and trigger the download
           var blob = new Blob([data], { type: 'text/csv' });
@@ -200,9 +209,13 @@
           document.body.removeChild(link);
         },
         error: function (xhr, status, error) {
+          $('#loader').hide()
+
           alert('An error occurred while generating the report: ' + error);
         },
         complete: function () {
+          $('#loader').hide()
+
           // Re-enable the button after the process is done
           $('#generateReportBtn').removeAttr('disabled');
         }
