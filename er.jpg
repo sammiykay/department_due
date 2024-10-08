@@ -1,0 +1,2351 @@
+Creator	"DbVis"
+Whatever	"Stuff"
+graph
+[
+	label	""
+	directed	1
+	node
+	[
+		id	0
+		graphics
+		[
+			x	389.0
+			y	372.8424508021428
+			w	127.0
+			h	67.14735794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"auth_group"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	349.5
+			y	367.79112977247974
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	385.5
+			y	367.79112977247974
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"name"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	349.5
+			y	387.10362977247974
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	385.5
+			y	387.10362977247974
+		]
+	]
+	node
+	[
+		id	1
+		graphics
+		[
+			x	97.0
+			y	667.0389706538274
+			w	185.0
+			h	86.45985794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"auth_group_permissions"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	28.5
+			y	652.3313996241643
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	110.5
+			y	652.3313996241643
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"group_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	28.5
+			y	671.6438996241643
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	110.5
+			y	671.6438996241643
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"permission_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	28.5
+			y	690.9563996241643
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	110.5
+			y	690.9563996241643
+		]
+	]
+	node
+	[
+		id	2
+		graphics
+		[
+			x	97.0
+			y	303.4672552255484
+			w	157.0
+			h	86.45985794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"auth_user_groups"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	42.5
+			y	288.7596841958853
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	96.5
+			y	288.7596841958853
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"user_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	42.5
+			y	308.0721841958853
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	96.5
+			y	308.0721841958853
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"group_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	42.5
+			y	327.3846841958853
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	96.5
+			y	327.3846841958853
+		]
+	]
+	node
+	[
+		id	3
+		graphics
+		[
+			x	389.0
+			y	768.4912357330322
+			w	199.0
+			h	105.77235794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"auth_permission"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	313.5
+			y	744.1274147033691
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	405.5
+			y	744.1274147033691
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"content_type_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	313.5
+			y	763.4399147033691
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	405.5
+			y	763.4399147033691
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"codename"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	313.5
+			y	782.7524147033691
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	405.5
+			y	782.7524147033691
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"name"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	313.5
+			y	802.0649147033691
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	405.5
+			y	802.0649147033691
+		]
+	]
+	node
+	[
+		id	4
+		graphics
+		[
+			x	97.0
+			y	409.9271131662222
+			w	185.0
+			h	86.45985794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"auth_user_user_permissions"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	28.5
+			y	395.21954213655914
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	110.5
+			y	395.21954213655914
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"user_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	28.5
+			y	414.53204213655914
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	110.5
+			y	414.53204213655914
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"permission_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	28.5
+			y	433.84454213655914
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	110.5
+			y	433.84454213655914
+		]
+	]
+	node
+	[
+		id	5
+		graphics
+		[
+			x	680.5
+			y	453.2596841958853
+			w	173.0
+			h	240.95985794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"auth_user"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	618.0
+			y	361.3021131662222
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	695.0
+			y	361.3021131662222
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"password"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	618.0
+			y	380.6146131662222
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	695.0
+			y	380.6146131662222
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"last_login"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	618.0
+			y	399.9271131662222
+		]
+		LabelGraphics
+		[
+			text	"DATETIME"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	695.0
+			y	399.9271131662222
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"is_superuser"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	618.0
+			y	419.2396131662222
+		]
+		LabelGraphics
+		[
+			text	"BOOL"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	695.0
+			y	419.2396131662222
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"username"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	618.0
+			y	438.5521131662222
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	695.0
+			y	438.5521131662222
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"last_name"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	618.0
+			y	457.8646131662222
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	695.0
+			y	457.8646131662222
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"email"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	618.0
+			y	477.1771131662222
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	695.0
+			y	477.1771131662222
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"is_staff"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	618.0
+			y	496.48961316622217
+		]
+		LabelGraphics
+		[
+			text	"BOOL"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	695.0
+			y	496.48961316622217
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"is_active"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	618.0
+			y	515.8021131662222
+		]
+		LabelGraphics
+		[
+			text	"BOOL"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	695.0
+			y	515.8021131662222
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"date_joined"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	618.0
+			y	535.1146131662222
+		]
+		LabelGraphics
+		[
+			text	"DATETIME"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	695.0
+			y	535.1146131662222
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"first_name"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	618.0
+			y	554.4271131662222
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	695.0
+			y	554.4271131662222
+		]
+	]
+	node
+	[
+		id	6
+		graphics
+		[
+			x	389.0
+			y	550.9228627131536
+			w	270.0
+			h	183.02235794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"django_admin_log"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	278.0
+			y	487.9340416834905
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	378.0
+			y	487.9340416834905
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"object_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	278.0
+			y	507.2465416834905
+		]
+		LabelGraphics
+		[
+			text	"TEXT"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	378.0
+			y	507.2465416834905
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"object_repr"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	278.0
+			y	526.5590416834905
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	378.0
+			y	526.5590416834905
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"action_flag"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	278.0
+			y	545.8715416834905
+		]
+		LabelGraphics
+		[
+			text	"SMALLINT UNSIGNED"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	378.0
+			y	545.8715416834905
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"change_message"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	278.0
+			y	565.1840416834905
+		]
+		LabelGraphics
+		[
+			text	"TEXT"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	378.0
+			y	565.1840416834905
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"content_type_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	278.0
+			y	584.4965416834905
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	378.0
+			y	584.4965416834905
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"user_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	278.0
+			y	603.8090416834905
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	378.0
+			y	603.8090416834905
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"action_time"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	278.0
+			y	623.1215416834905
+		]
+		LabelGraphics
+		[
+			text	"DATETIME"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	378.0
+			y	623.1215416834905
+		]
+	]
+	node
+	[
+		id	7
+		graphics
+		[
+			x	389.0
+			y	219.34670125521149
+			w	195.0
+			h	144.39735794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"payments_student"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	315.5
+			y	175.6703802255484
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	403.5
+			y	175.6703802255484
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"matric_number"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	315.5
+			y	194.9828802255484
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	403.5
+			y	194.9828802255484
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"department"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	315.5
+			y	214.2953802255484
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	403.5
+			y	214.2953802255484
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"user_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	315.5
+			y	233.6078802255484
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	403.5
+			y	233.6078802255484
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"faculty"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	315.5
+			y	252.9203802255484
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	403.5
+			y	252.9203802255484
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"image"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	315.5
+			y	272.2328802255484
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	403.5
+			y	272.2328802255484
+		]
+	]
+	node
+	[
+		id	8
+		graphics
+		[
+			x	680.5
+			y	709.3312040475698
+			w	148.0
+			h	86.45985794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"django_content_type"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	630.5
+			y	694.6236330179067
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	687.5
+			y	694.6236330179067
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"app_label"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	630.5
+			y	713.9361330179067
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	687.5
+			y	713.9361330179067
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"model"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	630.5
+			y	733.2486330179067
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	687.5
+			y	733.2486330179067
+		]
+	]
+	node
+	[
+		id	9
+		graphics
+		[
+			x	71.0
+			y	919.263593673706
+			w	142.0
+			h	105.77235794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"django_migrations"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	24.0
+			y	894.899772644043
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	70.0
+			y	894.899772644043
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"app"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	24.0
+			y	914.212272644043
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	70.0
+			y	914.212272644043
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"name"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	24.0
+			y	933.524772644043
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	70.0
+			y	933.524772644043
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"applied"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	24.0
+			y	952.837272644043
+		]
+		LabelGraphics
+		[
+			text	"DATETIME"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	70.0
+			y	952.837272644043
+		]
+	]
+	node
+	[
+		id	10
+		graphics
+		[
+			x	273.0
+			y	909.607343673706
+			w	172.0
+			h	86.45985794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"django_session"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"session_key"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	211.0
+			y	894.899772644043
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	287.0
+			y	894.899772644043
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"session_data"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	211.0
+			y	914.212272644043
+		]
+		LabelGraphics
+		[
+			text	"TEXT"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	287.0
+			y	914.212272644043
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"expire_date"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	211.0
+			y	933.524772644043
+		]
+		LabelGraphics
+		[
+			text	"DATETIME"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	287.0
+			y	933.524772644043
+		]
+	]
+	node
+	[
+		id	11
+		graphics
+		[
+			x	911.0
+			y	91.51117897033691
+			w	198.0
+			h	183.02235794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"payments_balance"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	836.0
+			y	28.522357940673828
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	938.0
+			y	28.522357940673828
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"price"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	836.0
+			y	47.83485794067383
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	938.0
+			y	47.83485794067383
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"account_name"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	836.0
+			y	67.14735794067383
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	938.0
+			y	67.14735794067383
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"account_number"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	836.0
+			y	86.45985794067383
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	938.0
+			y	86.45985794067383
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"amount_withdraw"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	836.0
+			y	105.77235794067383
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	938.0
+			y	105.77235794067383
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"bank_code"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	836.0
+			y	125.08485794067383
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	938.0
+			y	125.08485794067383
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"created_on"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	836.0
+			y	144.39735794067383
+		]
+		LabelGraphics
+		[
+			text	"DATETIME"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	938.0
+			y	144.39735794067383
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"bank_name"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	836.0
+			y	163.70985794067383
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	938.0
+			y	163.70985794067383
+		]
+	]
+	node
+	[
+		id	12
+		graphics
+		[
+			x	484.0
+			y	899.951093673706
+			w	160.0
+			h	67.14735794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"payments_departmentfee"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	428.0
+			y	894.899772644043
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	462.0
+			y	894.899772644043
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"price"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	428.0
+			y	914.212272644043
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	462.0
+			y	914.212272644043
+		]
+	]
+	node
+	[
+		id	13
+		graphics
+		[
+			x	389.0
+			y	93.57434331453766
+			w	127.0
+			h	67.14735794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"payments_session"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	349.5
+			y	88.52302228487457
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	385.5
+			y	88.52302228487457
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"name"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	349.5
+			y	107.83552228487457
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	385.5
+			y	107.83552228487457
+		]
+	]
+	node
+	[
+		id	14
+		graphics
+		[
+			x	39.58163265306126
+			y	113.94166366421446
+			w	194.0
+			h	163.70985794067383
+			customconfiguration	"DEFAULT"
+			fill	"#2A2A2A"
+			outline	"#1765B4"
+		]
+		LabelGraphics
+		[
+			text	"payments_payment"
+			color	"#DDDDDD"
+			fontSize	12
+			fontName	"Inter"
+			anchor	"t"
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	-33.41836734693874
+			y	60.609092634551374
+		]
+		LabelGraphics
+		[
+			text	"INTEGER"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	48.58163265306126
+			y	60.609092634551374
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"amount"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	-33.41836734693874
+			y	79.92159263455137
+		]
+		LabelGraphics
+		[
+			text	"DECIMAL"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	48.58163265306126
+			y	79.92159263455137
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"date_paid"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	-33.41836734693874
+			y	99.23409263455137
+		]
+		LabelGraphics
+		[
+			text	"DATETIME"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	48.58163265306126
+			y	99.23409263455137
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"transaction_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	-33.41836734693874
+			y	118.54659263455136
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	48.58163265306126
+			y	118.54659263455136
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"receipt"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	-33.41836734693874
+			y	137.85909263455136
+		]
+		LabelGraphics
+		[
+			text	"VARCHAR"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	48.58163265306126
+			y	137.85909263455136
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"session_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	-33.41836734693874
+			y	157.17159263455136
+		]
+		LabelGraphics
+		[
+			text	"BIGINT"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	48.58163265306126
+			y	157.17159263455136
+		]
+		LabelGraphics
+		[
+		]
+		LabelGraphics
+		[
+			text	"student_id"
+			color	"#DDDDDD"
+			fontSize	11
+			fontStyle	"bold"
+			fontName	"Inter"
+			x	-33.41836734693874
+			y	176.48409263455136
+		]
+		LabelGraphics
+		[
+			text	"BIGINT"
+			color	"#DDDDDD"
+			fontSize	11
+			fontName	"Inter"
+			x	48.58163265306126
+			y	176.48409263455136
+		]
+	]
+	edge
+	[
+		source	1
+		target	0
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	97.0
+					y	667.0389706538274
+				]
+				point
+				[
+					x	214.0
+					y	679.3001496241643
+				]
+				point
+				[
+					x	214.0
+					y	375.44737977247974
+				]
+				point
+				[
+					x	389.0
+					y	372.8424508021428
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.28362709283828735
+			xTarget	-1.0
+			yTarget	0.07758843153715134
+		]
+	]
+	edge
+	[
+		source	2
+		target	0
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	97.0
+					y	303.4672552255484
+				]
+				point
+				[
+					x	224.0
+					y	335.0409341958853
+				]
+				point
+				[
+					x	224.0
+					y	375.44737977247974
+				]
+				point
+				[
+					x	389.0
+					y	372.8424508021428
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.7303662300109863
+			xTarget	-1.0
+			yTarget	0.07758843153715134
+		]
+	]
+	edge
+	[
+		source	1
+		target	3
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	97.0
+					y	667.0389706538274
+				]
+				point
+				[
+					x	214.0
+					y	698.6126496241643
+				]
+				point
+				[
+					x	214.0
+					y	751.7836647033691
+				]
+				point
+				[
+					x	389.0
+					y	768.4912357330322
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.7303662300109863
+			xTarget	-1.0
+			yTarget	-0.31591564416885376
+		]
+	]
+	edge
+	[
+		source	4
+		target	3
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	97.0
+					y	409.9271131662222
+				]
+				point
+				[
+					x	224.0
+					y	441.50079213655914
+				]
+				point
+				[
+					x	224.0
+					y	751.7836647033691
+				]
+				point
+				[
+					x	389.0
+					y	768.4912357330322
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.7303662300109863
+			xTarget	-1.0
+			yTarget	-0.31591564416885376
+		]
+	]
+	edge
+	[
+		source	4
+		target	5
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	97.0
+					y	409.9271131662222
+				]
+				point
+				[
+					x	234.0
+					y	422.18829213655914
+				]
+				point
+				[
+					x	234.0
+					y	448.91168374281665
+				]
+				point
+				[
+					x	544.0
+					y	448.91168374281665
+				]
+				point
+				[
+					x	544.0
+					y	368.9583631662222
+				]
+				point
+				[
+					x	680.5
+					y	453.2596841958853
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.28362709283828735
+			xTarget	-1.0
+			yTarget	-0.6997125744819641
+		]
+	]
+	edge
+	[
+		source	2
+		target	5
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	97.0
+					y	303.4672552255484
+				]
+				point
+				[
+					x	214.0
+					y	315.7284341958853
+				]
+				point
+				[
+					x	214.0
+					y	302.0453802255484
+				]
+				point
+				[
+					x	564.0
+					y	302.0453802255484
+				]
+				point
+				[
+					x	564.0
+					y	368.9583631662222
+				]
+				point
+				[
+					x	680.5
+					y	453.2596841958853
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.28362709283828735
+			xTarget	-1.0
+			yTarget	-0.6997125744819641
+		]
+	]
+	edge
+	[
+		source	6
+		target	5
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	389.0
+					y	550.9228627131536
+				]
+				point
+				[
+					x	554.0
+					y	611.4652916834905
+				]
+				point
+				[
+					x	554.0
+					y	368.9583631662222
+				]
+				point
+				[
+					x	680.5
+					y	453.2596841958853
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.6615850329399109
+			xTarget	-1.0
+			yTarget	-0.6997125744819641
+		]
+	]
+	edge
+	[
+		source	7
+		target	5
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	389.0
+					y	219.34670125521149
+				]
+				point
+				[
+					x	574.0
+					y	241.2641302255484
+				]
+				point
+				[
+					x	574.0
+					y	368.9583631662222
+				]
+				point
+				[
+					x	680.5
+					y	453.2596841958853
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.30357104539871216
+			xTarget	-1.0
+			yTarget	-0.6997125744819641
+		]
+	]
+	edge
+	[
+		source	6
+		target	8
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	389.0
+					y	550.9228627131536
+				]
+				point
+				[
+					x	564.0
+					y	592.1527916834905
+				]
+				point
+				[
+					x	564.0
+					y	702.2798830179067
+				]
+				point
+				[
+					x	680.5
+					y	709.3312040475698
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.4505452811717987
+			xTarget	-1.0
+			yTarget	-0.16311201453208923
+		]
+	]
+	edge
+	[
+		source	3
+		target	8
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	389.0
+					y	768.4912357330322
+				]
+				point
+				[
+					x	544.0
+					y	771.0961647033691
+				]
+				point
+				[
+					x	544.0
+					y	702.2798830179067
+				]
+				point
+				[
+					x	680.5
+					y	709.3312040475698
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.049255382269620895
+			xTarget	-1.0
+			yTarget	-0.16311201453208923
+		]
+	]
+	edge
+	[
+		source	14
+		target	7
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	39.58163265306126
+					y	113.94166366421446
+				]
+				point
+				[
+					x	214.0
+					y	184.14034263455136
+				]
+				point
+				[
+					x	214.0
+					y	183.3266302255484
+				]
+				point
+				[
+					x	389.0
+					y	219.34670125521149
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.8575986623764038
+			xTarget	-1.0
+			yTarget	-0.4989020824432373
+		]
+	]
+	edge
+	[
+		source	14
+		target	13
+		graphics
+		[
+			fill	"#FFAA00"
+			targetArrow	"standard"
+			Line
+			[
+				point
+				[
+					x	39.58163265306126
+					y	113.94166366421446
+				]
+				point
+				[
+					x	160.0
+					y	164.82784263455136
+				]
+				point
+				[
+					x	160.0
+					y	96.17927228487457
+				]
+				point
+				[
+					x	389.0
+					y	93.57434331453766
+				]
+			]
+		]
+		edgeAnchor
+		[
+			xSource	1.0
+			ySource	0.621662974357605
+			xTarget	-1.0
+			yTarget	0.07758843153715134
+		]
+	]
+]

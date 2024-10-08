@@ -115,11 +115,14 @@ def generate_receipt_reportlab():
 @student_required
 def home(request):
     if request.user.student:
-        payment = Payment.objects.filter(student = request.user.student)
-        total_payment = len(payment) * int(DepartmentFee.objects.first().price)
-        total_payment_receipt = len(payment)
+        payments = Payment.objects.filter(student = request.user.student)
+        fee = 0
+        for payment in payments:
+            fee += payment.amount
+        print(fee)
+        total_payment_receipt = len(payments)
         context = {
-            'total_payment': total_payment,
+            'total_payment': fee,
             'total_payment_receipt': total_payment_receipt,
         }
     else:
@@ -216,7 +219,7 @@ def generate_pdf_receipt(payment):
         'qr_code_url': qr_code_url,
         'watermark_image_url': aaua_logo_url
     })
-    
+    make_payment.receipt = html_string
     # Generate the PDF file
     pdf_buffer = io.BytesIO()
     pisa_status = pisa.CreatePDF(io.StringIO(html_string), dest=pdf_buffer)

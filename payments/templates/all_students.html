@@ -11,7 +11,7 @@
       class="mb-4 w-full p-2 border rounded bg-transparent outline-none border-1 border-gray-600 text-sm dark:text-white"
       placeholder="Search by Matric Number and Name...">
     <div id="student-grid">
-      <div class="grid grid-cols-3 gap-5">
+      <div class="grid grid-cols-4 gap-5">
         {% for student in page_obj %}
         <div class="max-w-sm rounded overflow-hidden shadow-lg dark:text-white dark:bg-gray-800">
           <img class="w-full"  style="height: 300px;" src="{{student.imageURL}}" alt="Sunset in the mountains">

@@ -85,7 +85,7 @@
                             <div class="flex items-center mt-4 space-x-6">
                                 <div class="shrink-0">
                                     <img id='preview_img' class="h-16 w-16 object-cover rounded-full"
-                                        src="https://lh3.googleusercontent.com/a-/AFdZucpC_6WFBIfaAbPHBwGM9z8SxyM1oV4wB4Ngwp_UyQ=s96-c"
+                                        src="{% static 'assets/img/icons8-avatar-100.png' %}"
                                         alt="Current profile photo" />
                                 </div>
                                 <label class="block">
@@ -107,12 +107,18 @@
                                 class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                 Create account
                             </button>
-
+                            <hr class="my-5">
+                            <p class="mt-4">
+                                <a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                                href="{% url 'login' %}">
+                                Login
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            {{form}}
+            <!-- {{form}} -->
 
         </div>
     </form>
